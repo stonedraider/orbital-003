@@ -61,7 +61,7 @@ class Body extends Component {
                     className="btn btn-default active"
                     onClick={() => this.onSwitchStyle(theme.BLACK)}
                 >
-                    Black Them
+                    Black Theme
                 </Button>
                 <Button
                     className="btn btn-default active"
