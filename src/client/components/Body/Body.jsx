@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import reactCSS from 'reactcss';
+import Slider from 'react-slick';
 
 import Button from '../Button';
+import SliderItem from '../SliderItem';
 
 import * as constants from '../../constants/constants.js';
 
@@ -39,6 +41,23 @@ class Body extends Component {
 
         const theme = constants.THEME_ID;
 
+        const {
+            isLoading,
+            results,
+            currentDay,
+            onSwitchStyle
+        } = this.state;
+
+        var settings = {
+            dots: true,
+            useCSS: true,
+            infinite: false,
+            slidesToShow: 5,
+            slidesToScroll: 2,
+            draggable: true,
+            speed: 50
+        };
+
         const styles = reactCSS({
             'black': {
                 Body: {
@@ -69,16 +88,31 @@ class Body extends Component {
                 >
                     White Theme
                 </Button>
-                {/*<Button
+                <Button
                     className="btn btn-default active"
                     onClick={() => this.fetchNextData()}
                 >
                     Load APOD
-                </Button>*/}
+                </Button>
                 <hr></hr>
-                <div>
-                    <div>
-                    </div>
+                <div className="divSlider">
+                    <Slider {...settings}>
+                        {
+                            results ?
+                                results.map(item =>
+                                    <div key={item.date}>
+                                        <SliderItem
+                                            media_type={item.media_type}
+                                            url={item.url}
+                                            date={item.date}
+                                            title={item.title}
+                                            explanation={item.explanation}
+                                        >
+                                        </SliderItem>
+                                    </div>
+                                ) : <div></div>
+                        }
+                    </Slider>
                 </div>
             </div >
         );
