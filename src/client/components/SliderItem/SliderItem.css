@@ -1,0 +1,9 @@
+.apodItem {
+  /*height: 150px;
+  width: 150px;*/
+  /*height: 500px;
+  max-width: 800px;*/
+  height: 500px;
+  max-width: 800px;
+  float: left;
+}

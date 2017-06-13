@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import reactCSS from 'reactcss';
 import Slider from 'react-slick';
 
+import './Body.css';
 import Button from '../Button';
 import SliderItem from '../SliderItem';
 
@@ -95,7 +96,24 @@ class Body extends Component {
                     Load APOD
                 </Button>
                 <hr></hr>
-                <div className="divSlider">
+                <div className="divImages">
+                    {
+                        results ?
+                            results.map(item =>
+                                <div key={item.date}>
+                                    <SliderItem
+                                        media_type={item.media_type}
+                                        url={item.url}
+                                        date={item.date}
+                                        title={item.title}
+                                        explanation={item.explanation}
+                                    >
+                                    </SliderItem>
+                                </div>
+                            ) : <div></div>
+                    }
+                </div>
+                {/*<div className="divSlider">
                     <Slider {...settings}>
                         {
                             results ?
@@ -113,7 +131,7 @@ class Body extends Component {
                                 ) : <div></div>
                         }
                     </Slider>
-                </div>
+                </div>*/}
             </div >
         );
     }

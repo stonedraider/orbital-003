@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import ReactTooltip from 'react-tooltip';
+
+import './SliderItem.css';
 
 export default class SliderItem extends Component {
 
@@ -12,6 +15,21 @@ export default class SliderItem extends Component {
       title: "",
       explanation: ""
     }
+
+    this.onMouseOver = this.onMouseOver.bind(this);
+  }
+
+  onMouseOver() {
+    console.dir(this);
+    // debugger;
+  }
+
+  onClick() {
+    // debugger;
+  }
+
+  getTooltipContent() {
+    return "Hi";
   }
 
   render() {
@@ -25,22 +43,26 @@ export default class SliderItem extends Component {
 
     return (
       <div>
-        <SliderItemInfo
+        <ReactTooltip html place="bottom" />
+        {/*<SliderItemInfo
           url={url}
           date={date}
           title={title}
           explanation={explanation}
         >
-        </SliderItemInfo>
+        </SliderItemInfo>*/}
         {media_type === "video"
           ?
-          <iframe width="800" height="600" src={url} frameBorder="0"></iframe>
+          <iframe className="apodItem" width="800" height="600" src={url} frameBorder="0"></iframe>
           :
-          <div>
-            <div className="divSliderImage">
-              <img src={url}></img>
-            </div>
-          </div>
+          <img
+            className="apodItem"
+            src={url}
+            data-tip={this.props.date + "</br>" + this.props.title + "</br>" + this.props.explanation}
+            onMouseOver={this.onMouseOver}
+            onClick={this.onClick}
+          >
+          </img>
         }
       </div>
     )
